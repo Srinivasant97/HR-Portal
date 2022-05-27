@@ -1,15 +1,17 @@
 <template>
-  <div>
+  <div class="bg-emerald-50 h-screen">
     <NavBar />
-    <CareersList
-      v-if="currentPage === 'list'"
-      :positions="positions"
-      :setCurrentPosition="setCurrentPosition"
-    />
-    <Career
-      v-if="currentPage === 'career'"
-      :currentPosition="currentPosition"
-    />
+    <div class="m-6">
+      <CareersList
+        v-if="currentPage === 'list'"
+        :positions="positions"
+        :setCurrentPosition="setCurrentPosition"
+      />
+      <Career
+        v-if="currentPage === 'career'"
+        :currentPosition="currentPosition"
+      />
+    </div>
   </div>
 </template>
 

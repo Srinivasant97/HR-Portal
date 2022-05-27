@@ -1,5 +1,5 @@
 <template>
-  <div>
+  <div class="bg-emerald-50 h-screen">
     <NavBar
       :onApplicantsClick="onApplicantsClick"
       :onApplicationsClick="onApplicationsClick"
@@ -11,8 +11,9 @@
       :allPositions="allPositions"
       v-if="currentPage === 'applications'"
     />
-    <JobForm v-if="currentPage === 'newPosition'" />
+    <JobForm class="m-6" v-if="currentPage === 'newPosition'" />
     <JobApplicants
+      class="m-6"
       :allApplicants="allApplicants"
       v-if="currentPage === 'applicants'"
     />

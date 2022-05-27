@@ -1,5 +1,5 @@
 <template>
-  <div class="bg-purple-50 h-screen">
+  <div class="bg-emerald-50 h-screen">
     <NavBar :onApplicantsClick="onApplicantsClick" :menubar="['applicants']" />
     <div class="m-6">
       <JobApplications
