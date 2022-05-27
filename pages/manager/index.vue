@@ -25,6 +25,7 @@ import JobApplicants from "@/components/hr/applicants.vue";
 import JobApplications from "@/components/hr/applications.vue";
 import NavBar from "@/components/hr/navbar.vue";
 import { HrApiService } from "@/api/HrApiService";
+import { routeLogin } from "@/utils/functions";
 export default {
   components: {
     JobForm,
@@ -40,6 +41,7 @@ export default {
     };
   },
   mounted() {
+    routeLogin();
     this.getAllApplicants();
     this.getAllPositions();
   },

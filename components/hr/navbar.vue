@@ -73,6 +73,14 @@
               >Add Position</a
             >
           </li>
+          <li @click="logOut">
+            <button
+              type="button"
+              class="text-white bg-purple-700 hover:bg-purple-800 focus:outline-none focus:ring-4 focus:ring-purple-300 font-medium rounded-full text-sm px-5 py-0.5 text-center mr-2 mb-2 dark:bg-blue-600 dark:hover:bg-blue-700 dark:focus:ring-blue-800"
+            >
+              Log Out
+            </button>
+          </li>
         </ul>
       </div>
     </div>
@@ -80,6 +88,7 @@
 </template>
 
 <script>
+import { logOut } from "@/utils/functions";
 export default {
   name: "Navbar",
   data() {
@@ -105,9 +114,13 @@ export default {
       },
     },
   },
+
   methods: {
     checkMenubar(item) {
       return this.menubar.includes(item);
+    },
+    logOut() {
+      logOut();
     },
   },
 };

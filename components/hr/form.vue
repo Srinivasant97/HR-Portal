@@ -1,5 +1,6 @@
 <template>
   <div class="flex justify-center items-center p-12 flex-col">
+  
     <form class="w-7/12">
       <div class="mb-6">
         <label

@@ -45,4 +45,12 @@ export const HrApiService = {
       console.log(error);
     }
   },
+
+  getEmployeeByEmail: (email) => {
+    try {
+      return axios.get(`${baseUrl}/hire/employee_by_email/${email}`);
+    } catch (error) {
+      console.log(error);
+    }
+  },
 };
