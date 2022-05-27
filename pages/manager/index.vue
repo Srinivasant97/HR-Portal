@@ -3,8 +3,7 @@
     <NavBar
       :onApplicantsClick="onApplicantsClick"
       :onApplicationsClick="onApplicationsClick"
-      :onNewPositionClick="onNewPositionClick"
-      :menubar="['applicants', 'applications', 'newPosition']"
+      :menubar="['applicants', 'applications']"
     />
     <JobApplications
       class="m-6"
@@ -57,9 +56,6 @@ export default {
     },
     onApplicationsClick() {
       this.currentPage = "applications";
-    },
-    onNewPositionClick() {
-      this.currentPage = "newPosition";
     },
   },
 };

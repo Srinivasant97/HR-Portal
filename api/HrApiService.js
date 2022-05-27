@@ -37,5 +37,12 @@ export const HrApiService = {
       console.log(error);
     }
   },
-  
+
+  jobApplicantUpdate: (data, pk) => {
+    try {
+      return axios.patch(`${baseUrl}/hire/job_applicant_update/${pk}`, data);
+    } catch (error) {
+      console.log(error);
+    }
+  },
 };

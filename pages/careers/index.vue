@@ -1,6 +1,6 @@
 <template>
   <div>
-    <h1 class="text-3xl font-bold underline">Careers Page</h1>
+    <NavBar />
     <CareersList
       v-if="currentPage === 'list'"
       :positions="positions"
@@ -15,6 +15,7 @@
 
 <script>
 import CareersList from "@/components/careers/list.vue";
+import NavBar from "@/components/hr/navbar.vue";
 import Career from "@/components/careers/career.vue";
 import { HrApiService } from "@/api/HrApiService";
 export default {
@@ -22,6 +23,7 @@ export default {
   components: {
     Career,
     CareersList,
+    NavBar,
   },
   data() {
     return {

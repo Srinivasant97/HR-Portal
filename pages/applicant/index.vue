@@ -1,21 +1,24 @@
 <template>
-  <div>
-    <NavBar
-      :onApplicantsClick="onApplicantsClick"
-      :onApplicationsClick="onApplicationsClick"
-      :onNewPositionClick="onNewPositionClick"
-      :menubar="['applicants', 'applications', 'newPosition']"
-    />
-    <JobApplications
-      class="m-6"
-      :allPositions="allPositions"
-      v-if="currentPage === 'applications'"
-    />
-    <JobForm v-if="currentPage === 'newPosition'" />
-    <JobApplicants
-      :allApplicants="allApplicants"
-      v-if="currentPage === 'applicants'"
-    />
+  <div class="bg-purple-50 h-screen">
+    <NavBar :onApplicantsClick="onApplicantsClick" :menubar="['applicants']" />
+    <div class="m-6">
+      <JobApplications
+        class="m-6"
+        :allPositions="allPositions"
+        v-if="currentPage === 'applications'"
+      />
+      <JobForm v-if="currentPage === 'newPosition'" />
+      <JobApplicants
+        :allApplicants="allApplicants"
+        type="view"
+        :setActiveApplicant="setActiveApplicant"
+        v-if="currentPage === 'applicants'"
+      />
+      <MyApplication
+        v-if="currentPage === 'myApplication'"
+        :myApplicationData="myApplicationData"
+      />
+    </div>
   </div>
 </template>
 
@@ -25,18 +28,21 @@ import JobApplicants from "@/components/hr/applicants.vue";
 import JobApplications from "@/components/hr/applications.vue";
 import NavBar from "@/components/hr/navbar.vue";
 import { HrApiService } from "@/api/HrApiService";
+import MyApplication from "@/components/applicant/myApplication.vue";
 export default {
   components: {
     JobForm,
     JobApplicants,
     JobApplications,
     NavBar,
+    MyApplication,
   },
   data() {
     return {
       allApplicants: [],
       allPositions: [],
       currentPage: "applicants",
+      myApplicationData: {},
     };
   },
   mounted() {
@@ -55,11 +61,9 @@ export default {
     onApplicantsClick() {
       this.currentPage = "applicants";
     },
-    onApplicationsClick() {
-      this.currentPage = "applications";
-    },
-    onNewPositionClick() {
-      this.currentPage = "newPosition";
+    setActiveApplicant(applicant) {
+      this.currentPage = "myApplication";
+      this.myApplicationData = applicant;
     },
   },
 };

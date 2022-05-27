@@ -11,7 +11,11 @@
         </h5>
       </a>
       <p class="mb-3 font-normal text-gray-700 dark:text-gray-400">
-        {{ positionDetails.job_app_description }}
+        {{
+          positionDetails.job_app_sub_title
+            ? positionDetails.job_app_sub_title
+            : positionDetails.job_app_title
+        }}
       </p>
       <a
         href="#"

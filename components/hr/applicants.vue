@@ -41,9 +41,19 @@
             <td class="px-6 py-4 w-1/6">{{ applicant.job_appl_status }}</td>
             <td class="px-6 py-4 text-center w-1/6">
               <a
-                href="#"
-                class="font-medium text-blue-600 dark:text-blue-500 hover:underline"
-                >Accept</a
+                v-if="type === 'action'"
+                class="font-medium text-600 dark:text-500 cursor-pointer"
+                :style="{
+                  color: getActionButton(applicant.job_appl_status).color,
+                }"
+                @click="routeApplicant(applicant)"
+                >{{ getActionButton(applicant.job_appl_status).text }}</a
+              >
+              <a
+                v-if="type === 'view'"
+                class="font-medium text-blue-600 dark:text-500 cursor-pointer"
+                @click="setActiveApplicant(applicant)"
+                >VIEW</a
               >
             </td>
           </tr>
@@ -54,11 +64,20 @@
 </template>
 
 <script>
+import { HrApiService } from "@/api/HrApiService";
 export default {
   props: {
     allApplicants: {
       type: Array,
       default: [],
+    },
+    setActiveApplicant: {
+      type: Function,
+      default: () => {},
+    },
+    type: {
+      type: String,
+      default: "action",
     },
   },
   methods: {
@@ -66,6 +85,53 @@ export default {
       if (linkedin_profile.length > 0) {
         window.open(linkedin_profile, "_blank");
       }
+    },
+    async routeApplicant(applicant) {
+      const data = {
+        job_appl_apl_id: applicant.job_appl_apl_id,
+        job_appl_app_id: applicant.job_appl_app_id,
+        job_appl_id: applicant.job_appl_id,
+        job_appl_status: this.getActionButton(applicant.job_appl_status).action,
+      };
+      await HrApiService.jobApplicantUpdate(data, applicant.job_appl_id);
+    },
+    getActionButton(status) {
+      if (status === "APPLIED")
+        return {
+          text: "Accept",
+          color: "green",
+          action: "ACCEPTED",
+        };
+      else if (status === "ACCEPTED")
+        return {
+          text: "Schedule",
+          color: "blue",
+          action: "SCHEDULED",
+        };
+      else if (status === "SCHEDULED")
+        return {
+          text: "Interviewed",
+          color: "orange",
+          action: "INTERVIEWED",
+        };
+      else if (status === "INTERVIEWED")
+        return {
+          text: "Select",
+          color: "purple",
+          action: "SELECTED",
+        };
+      else if (status === "SELECTED")
+        return {
+          text: "Reject",
+          color: "red",
+          action: "REJECTED",
+        };
+      else
+        return {
+          text: "Closed",
+          color: "red",
+          action: "REJECTED",
+        };
     },
   },
 };
