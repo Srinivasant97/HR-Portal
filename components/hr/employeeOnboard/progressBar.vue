@@ -35,6 +35,7 @@
             {{ statusDetails[item].text }}
           </p>
           <button
+          @click="onClickItem(item)"
             type="button"
             class="text-white bg-purple-700 hover:bg-purple-800 focus:outline-none focus:ring-4 focus:ring-purple-300 font-medium rounded-full text-sm px-5 py-0.5 text-center mr-2 mb-2 dark:bg-blue-600 dark:hover:bg-blue-700 dark:focus:ring-blue-800"
           >
@@ -50,10 +51,14 @@
 export default {
   name: "myApplication",
   props: {
-    myApplicationData: {
-      type: Object,
-      required: true,
-    },
+    // myApplicationData: {
+    //   type: Object,
+    //   required: true,
+    // },
+    onClickItem: {
+      type: Function,
+      default: null
+    }
   },
   data() {
     return {

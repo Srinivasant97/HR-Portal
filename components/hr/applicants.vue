@@ -94,6 +94,7 @@ export default {
         job_appl_status: this.getActionButton(applicant.job_appl_status).action,
       };
       await HrApiService.jobApplicantUpdate(data, applicant.job_appl_id);
+      window.location.reload(true)
     },
     getActionButton(status) {
       if (status === "APPLIED")

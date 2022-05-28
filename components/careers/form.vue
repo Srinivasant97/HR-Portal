@@ -104,6 +104,8 @@ export default {
         job_appl_app_id: this.currentPosition.job_app_id,
       };
       await HrApiService.ApplyForJob(applicationData);
+      alert("Job Applied Successfully")
+      window.location.reload(true)
     },
   },
 };

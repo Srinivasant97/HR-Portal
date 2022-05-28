@@ -1,10 +1,10 @@
 <template>
   <div>
-    <ProgressBar />
-    <Employee v-if="currentPage === 'Employee'" />
+    <ProgressBar :onClickItem="onClickItem" />
+    <Employee v-if="currentPage === 'Employee '" />
     <EmployeeJob v-if="currentPage === 'Job Details'" />
     <EmployeePersonal v-if="currentPage === 'Personal Details'" />
-    <EmployeeAccount v-if="currentPage === 'Account Details'" />
+    <EmployeeAccounting v-if="currentPage === 'Account Details'" />
   </div>
 </template>
 
