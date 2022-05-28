@@ -42,23 +42,26 @@
           class="shadow-sm bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 block w-full p-2.5 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-blue-500 dark:focus:border-blue-500 dark:shadow-sm-light"
           placeholder="Enter your mobile number"
           required=""
-          v-model="emp_mobile"
+          v-model="emp_phone"
         />
       </div>
       <div class="mb-6">
         <label
-          for="linkedin"
-          class="block mb-2 text-sm font-medium text-gray-900 dark:text-gray-300"
+          for="type"
+          class="block mb-2 text-sm font-medium text-gray-900 dark:text-gray-400"
           >Employee Role</label
         >
-        <input
-          type="text"
-          id="role"
-          class="shadow-sm bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 block w-full p-2.5 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-blue-500 dark:focus:border-blue-500 dark:shadow-sm-light"
-          placeholder="Enter your Role"
-          required=""
+        <select
+          id="type"
+          class="bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 block w-full p-2.5 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-blue-500 dark:focus:border-blue-500"
           v-model="emp_role"
-        />
+        >
+          <option value="1">ADMIN</option>
+          <option value="2">MANAGER</option>
+          <option value="3">EMPLOYEE</option>
+          <option value="4">HR</option>
+          <option value="5">APPLICANT</option>
+        </select>
       </div>
     </form>
     <button
@@ -80,7 +83,7 @@ export default {
     return {
       emp_name: "",
       emp_email: "",
-      emp_mobile: "",
+      emp_phone: "",
       emp_role: "",
     };
   },
@@ -89,14 +92,14 @@ export default {
       const formData = {
         emp_name: this.emp_name,
         emp_email: this.emp_email,
-        emp_mobile: this.emp_mobile,
+        emp_phone: this.emp_phone,
         emp_role: this.emp_role,
       };
       const applicant = await HrApiService.postEmployeeDetails(formData);
       alert("Employee Credential uploaded Successfully")
       this.emp_name=""
       this.emp_email=""
-      this.emp_mobile=""
+      this.emp_phone=""
       this.emp_role=""
     },
   },
