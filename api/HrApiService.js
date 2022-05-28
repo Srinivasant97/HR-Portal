@@ -61,4 +61,18 @@ export const HrApiService = {
       console.log(error);
     }
   },
+  addTask: (data) => {
+    try {
+      return axios.post(`${baseUrl}/task/task/0`, data);
+    } catch (error) {
+      console.log(error);
+    }
+  },
+  getAllTasks: () => {
+    try {
+      return axios.get(`${baseUrl}/task/task/0`);
+    } catch (error) {
+      console.log(error);
+    }
+  },
 };
