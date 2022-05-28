@@ -175,6 +175,8 @@ export default {
         job_app_type: this.job_app_type,
       };
       await HrApiService.PostJobPosition(job_app);
+      alert("Job Posted Successfully")
+      window.location.reload(true)
     },
     async setOptions() {
       let managers = await HrApiService.getAllEmployees();

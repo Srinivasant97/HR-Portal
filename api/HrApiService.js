@@ -75,4 +75,32 @@ export const HrApiService = {
       console.log(error);
     }
   },
+  postEmployeeDetails: (payload) => {
+    try{
+      return axios.post(`${baseUrl}/hire/employee`,payload);
+    }catch (error) {
+      console.log(error);
+    }
+  },
+  postEmployeeJobDetails: (payload) => {
+    try{
+      return axios.post(`${baseUrl}/hire/employee_job_details`,payload);
+    }catch (error) {
+      console.log(error);
+    }
+  },
+  postPersonalDetails: (payload) => {
+    try{
+      return axios.post(`${baseUrl}/hire/employee_personal_details`,payload);
+    }catch (error) {
+      console.log(error);
+    }
+  },
+  postAccountDetails: (payload) => {
+    try{
+      return axios.post(`${baseUrl}/hire/employee_accounting_details`,payload);
+    }catch (error) {
+      console.log(error);
+    }
+  }
 };

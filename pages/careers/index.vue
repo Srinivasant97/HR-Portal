@@ -1,6 +1,6 @@
 <template>
   <div class="bg-emerald-50 h-screen">
-    <NavBar :menubar="['allApplications']" :setCareersPage="setCareersPage" />
+    <NavBar :menubar="['allApplications','allEmployees']" :setCareersPage="setCareersPage" />
     <div class="m-6">
       <CareersList
         v-if="currentPage === 'list'"
