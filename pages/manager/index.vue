@@ -38,17 +38,26 @@ export default {
       allApplicants: [],
       allPositions: [],
       currentPage: "applicants",
+      loginUserId: null,
     };
   },
   mounted() {
     routeLogin();
+    this.setUserId();
     this.getAllApplicants();
     this.getAllPositions();
   },
   methods: {
     async getAllApplicants() {
       const allApplicants = await HrApiService.getAllApplicants();
-      this.allApplicants = allApplicants.data;
+      allApplicants.data.forEach((applicant) => {
+        console.log(applicant, this.loginUserId);
+        if (
+          applicant.job_application.job_app_manager_emp_id === this.loginUserId
+        ) {
+          this.allApplicants.push(applicant);
+        }
+      });
     },
     async getAllPositions() {
       const allPositions = await HrApiService.getAllPositions();
@@ -59,6 +68,10 @@ export default {
     },
     onApplicationsClick() {
       this.currentPage = "applications";
+    },
+    setUserId() {
+      const user = JSON.parse(localStorage.getItem("hrAppUserCredentails"));
+      this.loginUserId = user.id;
     },
   },
 };
