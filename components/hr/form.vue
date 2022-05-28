@@ -1,6 +1,5 @@
 <template>
   <div class="flex justify-center items-center p-12 flex-col">
-  
     <form class="w-7/12">
       <div class="mb-6">
         <label
@@ -70,7 +69,49 @@
           v-model="job_app_manager_emp_id"
         >
           <option selected>Choose Manager</option>
-          <option value="1">Robins</option>
+          <option
+            v-for="(manager, index) in managerOptions"
+            :key="index"
+            :value="manager.value"
+          >
+            {{ manager.option }}
+          </option>
+        </select>
+      </div>
+      <div class="mb-6">
+        <label
+          for="hrmanager"
+          class="block mb-2 text-sm font-medium text-gray-900 dark:text-gray-400"
+          >Hr Manager</label
+        >
+        <select
+          id="hrmanager"
+          class="bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 block w-full p-2.5 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-blue-500 dark:focus:border-blue-500"
+        >
+          <option selected>Choose Hr Manager</option>
+          <option value="job_app_hr_emp_id.value">
+            {{ job_app_hr_emp_id.name }}
+          </option>
+        </select>
+      </div>
+      <div class="mb-6">
+        <label
+          for="type"
+          class="block mb-2 text-sm font-medium text-gray-900 dark:text-gray-400"
+          >Reporting Manager</label
+        >
+        <select
+          id="type"
+          class="bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 block w-full p-2.5 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-blue-500 dark:focus:border-blue-500"
+          v-model="job_app_type"
+        >
+          <option value="ENGINEERING">Engineering</option>
+          <option value="ACCOUNTS">Accounts</option>
+          <option value="BUSINESS-AFFAIRS">Business-Affairs</option>
+          <option value="SALES">Sales</option>
+          <option value="MARKETING">Marketing</option>
+          <option value="DESIGN">Design</option>
+          <option value="OTHER">Other</option>
         </select>
       </div>
       <label
@@ -108,11 +149,18 @@ export default {
       job_app_salary: "",
       job_app_description: "",
       job_app_manager_emp_id: "",
-      job_app_hr_emp_id: 1,
+      job_app_type: "ENGINEERING",
+      job_app_hr_emp_id: {
+        value: 1,
+        name: "Jhansi",
+      },
       job_app_sub_title: "",
+      managerOptions: [],
     };
   },
-
+  mounted() {
+    this.setOptions();
+  },
   methods: {
     async submitForm() {
       let job_app = {
@@ -121,10 +169,28 @@ export default {
         job_app_salary: this.job_app_salary,
         job_app_description: this.job_app_description,
         job_app_manager_emp_id: this.job_app_manager_emp_id,
-        job_app_hr_emp_id: this.job_app_hr_emp_id,
+        job_app_hr_emp_id: this.job_app_hr_emp_id.value,
         job_app_sub_title: this.job_app_sub_title,
+        job_app_type: this.job_app_type,
       };
       await HrApiService.PostJobPosition(job_app);
+    },
+    async setOptions() {
+      let managers = await HrApiService.getAllEmployees();
+      console.log(managers)
+      const options = [];
+      managers.data.forEach((manager) => {
+        if (manager.role_name === "MANAGER")
+          options.push({
+            value: manager.emp_id,
+            option: manager.emp_name,
+          });
+        else if (manager.role_name === "HR") this.job_app_hr_emp_id = {
+          value: manager.emp_id,
+          name: manager.emp_name,
+        }
+      });
+      this.managerOptions = options;
     },
   },
 };

@@ -53,4 +53,12 @@ export const HrApiService = {
       console.log(error);
     }
   },
+
+  getAllEmployees: () => {
+    try {
+      return axios.get(`${baseUrl}/hire/employee_list`);
+    } catch (error) {
+      console.log(error);
+    }
+  },
 };

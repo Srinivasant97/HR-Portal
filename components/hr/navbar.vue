@@ -73,7 +73,17 @@
               >Add Position</a
             >
           </li>
-          <li @click="logOut">
+          <li
+            @click="setCareersPage"
+            v-if="checkMenubar('allApplications')"
+          >
+            <a
+              href="#"
+              class="block py-2 pr-4 pl-3 text-gray-700 border-b border-gray-100 hover:bg-gray-50 md:hover:bg-transparent md:border-0 md:hover:text-blue-700 md:p-0 dark:text-gray-400 md:dark:hover:text-white dark:hover:bg-gray-700 dark:hover:text-white md:dark:hover:bg-transparent dark:border-gray-700"
+              >All Careers</a
+            >
+          </li>
+          <li @click="logOut" v-if="!checkMenubar('allApplications')">
             <button
               type="button"
               class="text-white bg-purple-700 hover:bg-purple-800 focus:outline-none focus:ring-4 focus:ring-purple-300 font-medium rounded-full text-sm px-5 py-0.5 text-center mr-2 mb-2 dark:bg-blue-600 dark:hover:bg-blue-700 dark:focus:ring-blue-800"
@@ -104,6 +114,10 @@ export default {
       default: () => {},
     },
     onNewPositionClick: {
+      type: Function,
+      default: () => {},
+    },
+    setCareersPage: {
       type: Function,
       default: () => {},
     },

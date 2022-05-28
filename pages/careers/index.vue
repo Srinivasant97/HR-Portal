@@ -1,6 +1,6 @@
 <template>
   <div class="bg-emerald-50 h-screen">
-    <NavBar />
+    <NavBar :menubar="['allApplications']" :setCareersPage="setCareersPage" />
     <div class="m-6">
       <CareersList
         v-if="currentPage === 'list'"
@@ -45,6 +45,9 @@ export default {
     setCurrentPosition(position) {
       this.currentPosition = position;
       this.currentPage = "career";
+    },
+    setCareersPage() {
+      this.currentPage = "list";
     },
   },
 };
