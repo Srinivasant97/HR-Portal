@@ -150,7 +150,7 @@ export default {
 
 <style scoped>
 .login-modal {
-  /* top: 25%;
-  left: 35%; */
+  top: 25%;
+  left: 35%;
 }
 </style>

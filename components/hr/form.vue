@@ -59,6 +59,26 @@
       </div>
       <div class="mb-6">
         <label
+          for="type"
+          class="block mb-2 text-sm font-medium text-gray-900 dark:text-gray-400"
+          >Reporting Team</label
+        >
+        <select
+          id="type"
+          class="bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 block w-full p-2.5 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-blue-500 dark:focus:border-blue-500"
+          v-model="job_app_type"
+        >
+          <option value="ENGINEERING">Engineering</option>
+          <option value="ACCOUNTS">Accounts</option>
+          <option value="BUSINESS-AFFAIRS">Business-Affairs</option>
+          <option value="SALES">Sales</option>
+          <option value="MARKETING">Marketing</option>
+          <option value="DESIGN">Design</option>
+          <option value="OTHER">Other</option>
+        </select>
+      </div>
+      <div class="mb-6">
+        <label
           for="manager"
           class="block mb-2 text-sm font-medium text-gray-900 dark:text-gray-400"
           >Reporting Manager</label
@@ -94,26 +114,7 @@
           </option>
         </select>
       </div>
-      <div class="mb-6">
-        <label
-          for="type"
-          class="block mb-2 text-sm font-medium text-gray-900 dark:text-gray-400"
-          >Reporting Manager</label
-        >
-        <select
-          id="type"
-          class="bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 block w-full p-2.5 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-blue-500 dark:focus:border-blue-500"
-          v-model="job_app_type"
-        >
-          <option value="ENGINEERING">Engineering</option>
-          <option value="ACCOUNTS">Accounts</option>
-          <option value="BUSINESS-AFFAIRS">Business-Affairs</option>
-          <option value="SALES">Sales</option>
-          <option value="MARKETING">Marketing</option>
-          <option value="DESIGN">Design</option>
-          <option value="OTHER">Other</option>
-        </select>
-      </div>
+
       <label
         for="description"
         class="block mb-2 text-sm font-medium text-gray-900 dark:text-gray-400"
@@ -177,7 +178,7 @@ export default {
     },
     async setOptions() {
       let managers = await HrApiService.getAllEmployees();
-      console.log(managers)
+      console.log(managers);
       const options = [];
       managers.data.forEach((manager) => {
         if (manager.role_name === "MANAGER")
@@ -185,10 +186,11 @@ export default {
             value: manager.emp_id,
             option: manager.emp_name,
           });
-        else if (manager.role_name === "HR") this.job_app_hr_emp_id = {
-          value: manager.emp_id,
-          name: manager.emp_name,
-        }
+        else if (manager.role_name === "HR")
+          this.job_app_hr_emp_id = {
+            value: manager.emp_id,
+            name: manager.emp_name,
+          };
       });
       this.managerOptions = options;
     },
