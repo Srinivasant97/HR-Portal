@@ -4,7 +4,8 @@
       :onApplicantsClick="onApplicantsClick"
       :onApplicationsClick="onApplicationsClick"
       :onNewPositionClick="onNewPositionClick"
-      :menubar="['applicants', 'applications', 'newPosition']"
+      :onBoardClick="onBoardClick"
+      :menubar="['applicants', 'applications', 'newPosition', 'onBoard']"
     />
     <JobApplications
       class="m-6"
@@ -17,6 +18,7 @@
       :allApplicants="allApplicants"
       v-if="currentPage === 'applicants'"
     />
+    <EmployeeOnboard v-if="currentPage === 'onboard'" />
   </div>
 </template>
 
@@ -24,6 +26,7 @@
 import JobForm from "@/components/hr/form.vue";
 import JobApplicants from "@/components/hr/applicants.vue";
 import JobApplications from "@/components/hr/applications.vue";
+import EmployeeOnboard from "@/components/hr/employeeOnboard";
 import NavBar from "@/components/hr/navbar.vue";
 import { HrApiService } from "@/api/HrApiService";
 import { routeLogin } from "@/utils/functions";
@@ -33,6 +36,7 @@ export default {
     JobApplicants,
     JobApplications,
     NavBar,
+    EmployeeOnboard,
   },
   data() {
     return {
@@ -63,6 +67,9 @@ export default {
     },
     onNewPositionClick() {
       this.currentPage = "newPosition";
+    },
+    onBoardClick() {
+      this.currentPage = "onboard";
     },
   },
 };

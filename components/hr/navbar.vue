@@ -73,14 +73,33 @@
               >Add Position</a
             >
           </li>
-          <li
-            @click="setCareersPage"
-            v-if="checkMenubar('allApplications')"
-          >
+          <li @click="setCareersPage" v-if="checkMenubar('allApplications')">
             <a
               href="#"
               class="block py-2 pr-4 pl-3 text-gray-700 border-b border-gray-100 hover:bg-gray-50 md:hover:bg-transparent md:border-0 md:hover:text-blue-700 md:p-0 dark:text-gray-400 md:dark:hover:text-white dark:hover:bg-gray-700 dark:hover:text-white md:dark:hover:bg-transparent dark:border-gray-700"
               >All Careers</a
+            >
+          </li>
+          <li @click="onAllEmployeesClick" v-if="checkMenubar('allEmployees')">
+            <a
+              href="#"
+              class="block py-2 pr-4 pl-3 text-gray-700 border-b border-gray-100 hover:bg-gray-50 md:hover:bg-transparent md:border-0 md:hover:text-blue-700 md:p-0 dark:text-gray-400 md:dark:hover:text-white dark:hover:bg-gray-700 dark:hover:text-white md:dark:hover:bg-transparent dark:border-gray-700"
+              >All Employees</a
+            >
+          </li>
+          <li @click="onBoardClick" v-if="checkMenubar('onBoard')">
+            <a
+              href="#"
+              class="block py-2 pr-4 pl-3 text-gray-700 border-b border-gray-100 hover:bg-gray-50 md:hover:bg-transparent md:border-0 md:hover:text-blue-700 md:p-0 dark:text-gray-400 md:dark:hover:text-white dark:hover:bg-gray-700 dark:hover:text-white md:dark:hover:bg-transparent dark:border-gray-700"
+              >OnBoard Employee</a
+            >
+          </li>
+
+          <li @click="onDetailsClick" v-if="checkMenubar('myDetails')">
+            <a
+              href="#"
+              class="block py-2 pr-4 pl-3 text-gray-700 border-b border-gray-100 hover:bg-gray-50 md:hover:bg-transparent md:border-0 md:hover:text-blue-700 md:p-0 dark:text-gray-400 md:dark:hover:text-white dark:hover:bg-gray-700 dark:hover:text-white md:dark:hover:bg-transparent dark:border-gray-700"
+              >My Details</a
             >
           </li>
           <li @click="logOut" v-if="!checkMenubar('allApplications')">
@@ -118,6 +137,18 @@ export default {
       default: () => {},
     },
     setCareersPage: {
+      type: Function,
+      default: () => {},
+    },
+    onAllEmployeesClick: {
+      type: Function,
+      default: () => {},
+    },
+    onDetailsClick: {
+      type: Function,
+      default: () => {},
+    },
+    onBoardClick: {
       type: Function,
       default: () => {},
     },

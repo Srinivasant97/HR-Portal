@@ -1,4 +1,9 @@
-const roles = { MANAGER: "manager", HR: "hr", APPLICANT: "applicant" };
+const roles = {
+  MANAGER: "manager",
+  HR: "hr",
+  APPLICANT: "applicant",
+  EMPLOYEE: "employee",
+};
 
 export const routeFunction = () => {
   const user = JSON.parse(localStorage.getItem("hrAppUserCredentails"));
